@@ -6,7 +6,7 @@
  * Time: 3:53 AM
  */
 class TimeLineHelper{
-    public static function makeItem($date,$icon,$header,$body,$id){
+    public static function makeItem($date,$icon,$header,$body){
         ?>
         <!-- timeline time label -->
            <li class="time-label">
@@ -15,7 +15,6 @@ class TimeLineHelper{
             </span>
            </li>
            <!-- /.timeline-label -->
-
            <!-- timeline item -->
            <li>
                <!-- timeline icon -->

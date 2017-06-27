@@ -72,7 +72,12 @@ if(isset($_POST) && !empty($_POST['title'])){
         <?php
         if($project->ownEntryList != null){
             foreach ($project->ownEntryList as &$value){
-               echo "<tr><th>$value->id</th><th><p>$value->post </p></th><th>$value->date</th><th><button type='button' class='btn-primary'>edit</button></th></tr>";
+               echo "<tr>
+               <th>$value->id</th>
+               <th><p>$value->post </p></th>
+               <th>$value->date</th>
+               <th><a href=/?page=editEntry&admin=1&projectId=$project->id&entryId=$value->id class='btn-primary'>edit</a></th>
+             </tr>";
             }
         }
         ?>

@@ -13,6 +13,46 @@ $project = $p->getProject($_GET['project_id']);
 //echo var_dump($project);
 //echo '</pre>';
 ?>
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <section class="comment_area">
+            <section class="comments">
+                <section id="commentTemplate" class="row">
+                    <section class="col-md-2 col-sm-2">
+                        <img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="anonymous"/>
+                    </section>
+                    <section class="col-md-10 col-sm-10">
+                        <section class="panel panel-default">
+                            <section class="panel-heading">
+                                Anonymous posted
+                            </section>
+                            <section class="panel-body">
+                                <p>
+                                    hello world
+                                </p>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section data-id="<?php echo $project->id; ?>" class="commentInput form-group">
+                <input type="text" placeholder="Comment" class="form-control">
+                <button class="btn btn-primary" type="submit">Send</button>
+            </section>
+        </section>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">sluiten</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <section class="row">
     <section class="col-md-offset-5 col-md-2">
         <section class="circleimage">
@@ -51,32 +91,7 @@ $project = $p->getProject($_GET['project_id']);
        </ul>
    </section>
     <section class="col-md-offset-2 col-md-8">
-
-            <section class="comment_area">
-                <section class="comments">
-                    <section id="commentTemplate" class="row">
-                        <section class="col-md-2 col-sm-2">
-                            <img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="anonymous"/>
-                        </section>
-                        <section class="col-md-10 col-sm-10">
-                            <section class="panel panel-default">
-                                <section class="panel-heading">
-                                    Anonymous posted
-                                </section>
-                                <section class="panel-body">
-                                    <p>
-                                        hello world
-                                    </p>
-                                </section>
-                            </section>
-                        </section>
-                    </section>
-                </section>
-                <section data-id="<?php echo $project->id; ?>" class="commentInput form-group">
-                    <input type="text" placeholder="Comment" class="form-control">
-                    <button class="btn btn-primary" type="submit">Send</button>
-                </section>
-            </section>
+        <button><i class="glyphicon glyphicon-comment"></i></button>
     </section>
 </section>
 <script>

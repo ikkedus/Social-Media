@@ -15,10 +15,13 @@ class projectProvider
         return $project;
     }
     function getAllProjectsOfUser($id){
-
         return R::find('project',' project_owner = ? ',
             array( $id )
         );
+    }
+    function getEntry($id){
+      $project =R::load('entry',$id);
+      return $project;
     }
     function createNewProject($project)
     {

@@ -94,4 +94,7 @@
     padding: 10px;
 }
 
-
+.modal-dialog {
+      width: 80%;
+      margin: 30px auto;
+}
