@@ -6,9 +6,6 @@
  * Time: 4:59 AM
  */
 
-namespace RedBeanPHP;
-
-
 class entry
 {
     public $id;
@@ -16,4 +13,12 @@ class entry
     public $postedBy;
     public $date;
     public $type;
+
+    public function __construct($id,$text,$postedBy,$date,$type){
+      $this->id= $id;
+      $this->text=$text;
+      $this->postedBy=$postedBy;
+      $this->date=$date;
+      $this->type=$type;
+    }
 }

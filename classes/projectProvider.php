@@ -57,7 +57,7 @@ class projectProvider
     }
     function createEntryObject($entry){
         $projectEntry = R::dispense('entry');
-        $projectEntry->postedBy= $_SESSION['user']['id'];
+        $projectEntry->postedBy= $entry->postedBy;
         $projectEntry->post=$entry->text;
         $projectEntry->date=date("Y-m-d H:i:s");
         $projectEntry->type = $entry->type;

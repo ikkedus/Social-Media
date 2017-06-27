@@ -63,13 +63,16 @@ if(isset($_POST) && !empty($_POST['title'])){
             </div>
         </section>
     </form>
+    <section class="">
+      <a href="<?php echo "/?page=addEntry&admin=1&projectId=$project->id"; ?>" class="btn btn-primary">nieuwe entry maken</a>
+    </section>
     <section class="entries box">
         <table class="table table-responsive table-condensed">
             <tr><th>#</th><th>post</th><th>datum</th><th></th></tr>
         <?php
         if($project->ownEntryList != null){
             foreach ($project->ownEntryList as &$value){
-               echo "<tr><th>$value->id</th><th><input type='text' value='$value->post' class='updateEntry'></th><th>$value->date</th><th><button type='button' class='btn-primary'>edit</button></th></tr>";
+               echo "<tr><th>$value->id</th><th><p>$value->post </p></th><th>$value->date</th><th><button type='button' class='btn-primary'>edit</button></th></tr>";
             }
         }
         ?>
