@@ -57,7 +57,7 @@ class projectProvider
     }
     function createEntryObject($entry){
         $projectEntry = R::dispense('entry');
-        $projectEntry->postedBy= $entry->id;
+        $projectEntry->postedBy= $_SESSION['user']['id'];
         $projectEntry->post=$entry->text;
         $projectEntry->date=date("Y-m-d H:i:s");
         $projectEntry->type = $entry->type;
@@ -66,7 +66,7 @@ class projectProvider
     }
     function updateEntry($entry){
         $dbentry =R::load('entry',$entry['id']);
-        $dbentry->postedBy = $entry['id'];
+        $dbentry->postedBy = $_SESSION['user']['id'];
         $dbentry->post=$entry['text'];
         $dbentry->date=date("Y-m-d H:i:s");
         $dbentry->type=$entry['type'];
@@ -84,9 +84,9 @@ class projectProvider
     }
     function createFileEntryObject($fileEntry){
         $file = R::dispense('file');
-        $file->uploadedBy=0;
+        $file->uploadedBy=$_SESSION['user']['id'];
         $file->uploadedOn=date("Y-m-d H:i:s");
-        $file->title='text.png';
+        $file->title=$fileEntry->title;
         R::store($file);
         return $file;
     }

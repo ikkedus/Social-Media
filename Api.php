@@ -6,8 +6,11 @@
  * Time: 12:43 AM
  */
 require_once 'classes/projectProvider.php';
+require_once 'classes/UserProvider.php';
+require_once 'classes/user.php';
 require_once 'classes/entry.php';
 require_once 'classes/comment.php';
+session_start();
 if(!isset($_GET['function']) || !empty($_GET['function'])){
     $_GET['function']();
 }
@@ -49,4 +52,33 @@ function removeComment(){
 function getComments(){
     $p = new projectProvider();
     echo json_encode($p->getComnments($_POST['projectId']));
+}
+function createTestUser()
+{
+  $user = new user(0,'ikkedus','123',false,true,'martin','gragt','van der','a@a.nl');
+  $u = new UserProvider();
+  $u->createUser($user);
+}
+function createUser()
+{
+  $user = new user(0,
+  $_POST['userName'],
+  $_POST['passWord'],
+  false,
+  $_POST['admin'],
+  $_POST['firstName'],
+  $_POST['lastName'],
+  $_POST['suffix'],
+  $_POST['email']);
+  $u = new UserProvider();
+  $u->createUser($user);
+}
+
+function authenticate(){
+  $u = new UserProvider();
+  $dbuser= $u->authenticateUser("ikkedus","123");
+  if($dbuser !=null){
+      $user = new user($dbuser->id,$dbuser->username,"",false,$dbuser->admin,$dbuser->firstName,$dbuser->lastName,$dbuser->suffix,$dbuser->email);
+      $_SESSION['user'] = ($user);
+  }
 }

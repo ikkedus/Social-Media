@@ -17,7 +17,7 @@ if(isset($_POST) && !empty($_POST['title'])){
     $path = "";
     $error = "";
     $path = UploadHelper::GeneratePath( "uploads/".$_POST['title']);
-    $editproject = new project(1,$_POST['title'],null,null,date("Y-m-d H:i:s"),$_POST['text'],$path,$project->id);
+    $editproject = new project($user->id,$_POST['title'],null,null,date("Y-m-d H:i:s"),$_POST['text'],$path,$project->id,0);
     $projectid = $p->updateProject($editproject);
     UploadHelper::UploadFile($path,$error);
 }
