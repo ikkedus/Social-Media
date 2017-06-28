@@ -11,14 +11,22 @@ require_once 'classes/user.php';
 require_once 'classes/entry.php';
 require_once 'classes/comment.php';
 session_start();
+/*
+deze if statement heeft als belangerijke functie om de gevraagde functie aanteroepen.
+*/
 if(!isset($_GET['function']) || !empty($_GET['function'])){
+  /*
+  dit stukje code roept een functie aan aan de hand van de waarde in de GET variable.
+  dus als de waarde Foo is zal de functie FOO() aangeroepen worden.
+  */
     $_GET['function']();
 }
-
+//deze functie verwijderd een entrie van een project.
 function removeEntry(){
     $p = new projectProvider();
     $p->deleteEntry($_POST['id']);
 }
+//deze functie voegt een entrie toe aan een project.
 function createEntry(){
     $entry = new Entry();
     $entry->text = $_POST["text"];

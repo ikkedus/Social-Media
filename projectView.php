@@ -91,7 +91,7 @@ $project = $p->getProject($_GET['project_id']);
        </ul>
    </section>
     <section class="col-md-offset-2 col-md-8">
-        <button><i class="glyphicon glyphicon-comment"></i></button>
+        <button onclick="$('.modal').modal()"><i class="glyphicon glyphicon-comment"></i></button>
     </section>
 </section>
 <script>

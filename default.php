@@ -25,12 +25,7 @@
 </head>
 <body>
 <?php
-
-if(!isset($_GET['page']) || $_GET['page'] == ""){
-    include 'projectView.php';
-}else{
     include $_GET['page'].'.php';
-}
 ?>
 <script>
     $(function () {

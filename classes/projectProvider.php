@@ -5,12 +5,14 @@
  * Date: 6/11/2017
  * Time: 12:47 AM
  */
-
+//dit importeerd de database connection code.
 require_once 'DatabaseConnection.php';
 
 class projectProvider
 {
-    function getProject($id){
+
+    function getProject($id){]
+        //wegens de gebruikte ORM laad ik de gegevens op deze manier R is de DatabaseConnection project is de tabel en id is de record die ik wil ophalen.
         $project =R::load('project',$id);
         return $project;
     }
@@ -19,18 +21,25 @@ class projectProvider
             array( $id )
         );
     }
+    function getAllProjects(){
+      return R::loadAll('project');
+    }
     function getEntry($id){
       $project =R::load('entry',$id);
       return $project;
     }
+    //deze functie krijgt een model binnen van het type project
     function createNewProject($project)
     {
+        //dispense zegt maak nieuwe record van het gegeven type in dit geval project.
         $projectObject = R::dispense('project');
         $projectObject->projectOwner = $project->projectOwner;
         $projectObject->title = $project->title;
         $projectObject->banner = $project->banner;
         if ($project->files != null) {
             foreach ($project->files as &$value) {
+                //de orm heeft een namingconvention als ik own en list toevoeg aan een waardenaam weet hij dat het een one to many relatie is.
+                //en zal hij dit automatich toepassen
                 $projectObject->ownFileList[] = $this->createFileEntryObject($value);
             }
         }
@@ -42,19 +51,24 @@ class projectProvider
         $projectObject->dateCreated = date("Y-m-d H:i:s");
         $projectObject->dateLastUpdated = date("Y-m-d H:i:s");
         $projectObject->description = $project->description;
+        //dit geeft de orm opdracht om het nieuwe object te opslaan.
         return R::store($projectObject);
     }
     function updateProject($project){
+        //om records aantepassen laad je ze eerst uit de database.
+        //om ze vervolgens aan tepassen met wat logica.
         $dbproject = R::load('project',$project->id);
         $dbproject->title = (Empty($project->title) ? $dbproject->title : $project->title);
         $dbproject->description = (Empty($project->description) ? $dbproject->description : $project->description);
         $dbproject->projectOwner = (Empty($project->projectOwner) ? $dbproject->projectOwner : $project->projectOwner);
         $dbproject->dateLastUpdated = date("Y-m-d H:i:s");
         $dbproject->banner = (Empty($project->banner) ? $dbproject->banner : $project->banner);
+        //en als je klaar bent op te slaan.
         R::store($dbproject);
     }
     function createEntry($projectId,$entry){
         $project =R::load('project',$projectId);
+        //laad het project en voeg een object to. zodat de one to many relatie efficent werkt.
         $project->ownEntryList[] = $this->createEntryObject($entry);
         R::store($project);
     }
